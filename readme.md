@@ -10,3 +10,6 @@ O projeto consiste no site de um restaurante fictício denominado Culinária Jar
 
 **Aluna:** Júlia Lilian Prudêncio da Costa <br>
 **Matrícula:** 20201214010006 <br>
+
+**Aluna:** Maria Olívia Batista Azevedo <br>
+**Matrícula:** 20201214010029 <br>
