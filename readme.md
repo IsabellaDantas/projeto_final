@@ -4,3 +4,6 @@ O projeto consiste no site de um restaurante fictício denominado Culinária Jar
 
 Aluna: Isabella Dantas de Azevedo Bezerra<br>
 Matricula: 20201214010030 <br>
+
+**Aluna:** Yasmim Brennda Azevedo Souza <br>
+**Matrícula:** 20201214010004 <br>
