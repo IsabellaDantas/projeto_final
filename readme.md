@@ -7,3 +7,6 @@ O projeto consiste no site de um restaurante fictício denominado Culinária Jar
 
 **Aluna:** Yasmim Brennda Azevedo Souza <br>
 **Matrícula:** 20201214010004 <br>
+
+**Aluna:** Júlia Lilian Prudêncio da Costa <br>
+**Matrícula:** 20201214010006 <br>
