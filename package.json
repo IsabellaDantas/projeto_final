@@ -1,0 +1,23 @@
+{
+  "name": "projeto_final",
+  "version": "1.0.0",
+  "description": "O projeto consiste no site de um restaurante fictício denominado Culinária Jardim, que tem como objetivo alcançar pessoas que procuram uma vida saudável ou que possuem alguma restrição alimentar. Assim, o software busca agilizar o cotidiano dos clientes, permitindo filtrar os pratos que atendam suas especificações alimentares e propiciando a reserva das refeições de forma prática. Além disso, quanto aos donos do empreendimento, contribui para a automatização do processo e para aumentar a visibilidade do negócio.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
