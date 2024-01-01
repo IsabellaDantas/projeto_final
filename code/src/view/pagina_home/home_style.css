@@ -7,6 +7,12 @@
     
 }
 
+body {
+
+    background-color: #fcfcfc;
+
+}
+
 body::-webkit-scrollbar {
 
     width: 0px;
@@ -21,9 +27,9 @@ body::-webkit-scrollbar {
     top: 0;
     left: 0;
     height: 100vh;
-    width: 270px;
+    width: 280px;
     background: #fff;
-    padding: 15px 10px;
+    padding: 15px 0px 15px 10px;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
 
 }
@@ -32,7 +38,9 @@ body::-webkit-scrollbar {
 
     display:flex;
     align-items: center;
-    margin-left: 8px;
+    justify-content: center;
+    margin-left: -20px;
+    margin-bottom: 20px;
   
 }
   
@@ -60,7 +68,7 @@ body::-webkit-scrollbar {
 
 }
 
-.menu_container {
+.options_container {
 
     display: flex;
     flex-direction: column;
@@ -72,7 +80,7 @@ body::-webkit-scrollbar {
 
 }
 
-.menu_title {
+.options_title {
 
     display: flex;
     align-items: center;
@@ -82,7 +90,7 @@ body::-webkit-scrollbar {
 
 }
 
-.menu_title .title {
+.options_title .title {
 
     margin-left: 15px;
   
@@ -94,17 +102,10 @@ body::-webkit-scrollbar {
     align-items: center;
     font-weight: 300;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 25px 0 0 25px;
     margin-bottom: 8px;
     color: #707070;
     transition: all 0.3s ease;
-
-}
-
-.link:hover {
-
-    color: #ffffff;
-    background-color: #0d580a;
 
 }
 
@@ -120,17 +121,24 @@ body::-webkit-scrollbar {
 
 }
 
+.link:hover {
+
+    color: #ffffff;
+    background-color: #0d580a;
+    width: 280px;
+
+}
+
 /* ===== Conteúdo principal ===== */
 
 .content {
 
     flex-grow: 1;
     margin-left: 290px;
-    background: #fcfcfc;
     
 }
 
-/* ===== Cabeçalho ===== */
+/* ===== Home: header ===== */
 
 .header {
 
@@ -148,7 +156,7 @@ body::-webkit-scrollbar {
 
 }
 
-h1 {
+.title h1 {
 
     width: 500px;
     font-family: 'Lexend Exa', sans-serif;
@@ -178,7 +186,7 @@ h1 img {
 
 }
 
-/* ===== Categorias ===== */
+/* ===== Home: pesquisa ===== */
 
 .categorias {
 
@@ -191,7 +199,7 @@ h1 img {
   
 }
 
-.botton {
+.button {
     
     font-family: "Poppins", sans-serif;
     padding: 7px 20px;
@@ -206,13 +214,11 @@ h1 img {
 
 }
 
-.botton:hover {
+.button:hover {
     
     background-color: #093f07;
 
 }
-
-/* ===== Searchbox ===== */
 
 .search_box {
     
@@ -254,7 +260,7 @@ h1 img {
   
 }
 
-/* ===== Cards ===== */
+/* ===== Home: pratos ===== */
 
 .card {
     
@@ -271,6 +277,7 @@ h1 img {
     width: 174px;
     height: 174px;
     border-radius: 50%;
+    object-fit: cover;
   
 }
   
@@ -306,7 +313,7 @@ h2 {
   
 }
   
-.menu {
+.menu_home {
   
     display: flex;
     justify-content: center;
@@ -314,4 +321,539 @@ h2 {
     gap: 50px;
     flex-wrap: wrap;
   
+}
+
+.menu_home .item {
+
+    grid-column: span 1; 
+    width: 160px;
+
+}
+
+.menu_home.list_items {
+
+    display:grid; 
+    grid-template-columns: repeat(3, 1fr);
+
+}
+
+/* ===== Gerenciamento de pratos ===== */
+
+.lista_pratos {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.styled_table {
+
+    border-collapse: collapse;
+    margin: 25px 0;
+    width: 1000px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+}
+
+.styled_table thead tr {
+
+    background-color: #0d580a;
+    color: #ffffff;
+    text-align: left;
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 400;
+
+}
+
+.styled_table th, .styled_table td {
+
+    padding: 12px 15px;
+    font-family: "Poppins", sans-serif;
+
+}
+
+.styled_table i {
+
+    font-size: 20px;
+    color:#0d580a;
+    cursor: pointer;
+
+}
+
+.styled_table tbody tr {
+
+    border-bottom: 1px solid #dddddd;
+
+}
+
+.styled_table tbody tr:nth-of-type(even) {
+
+    background-color: #f3f3f3;
+
+}
+
+.styled_table tbody tr:last-of-type {
+
+    border-bottom: 2px solid #0d580a;
+
+}
+
+/* ===== Modais: base ===== */
+
+.modal_container {
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    transition: opacity 0.2s ease;
+
+}
+
+.modal_container.show {
+
+    pointer-events: auto;
+    opacity: 1;
+
+}
+
+.modal {
+
+    background-color:#fff;
+    width: 450px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-height: 84vh;
+    margin: 8vh 0 8vh 0;
+    overflow-y: auto;
+
+}
+
+.modal::-webkit-scrollbar {
+    
+    width: 0px;
+    
+}
+
+.modal button {
+    
+    font-family: "Poppins", sans-serif;
+    padding: 7px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 400;
+    transition: 0.3s ease;
+    margin: 20px 10px 0 10px;
+
+}
+
+.modal .red {
+
+    background-color: #f31616;
+    Color: #fff;
+
+}
+
+.modal .green {
+
+    background-color: #0d580a;
+    Color: #fff;
+
+}
+
+.button_fixed {
+    
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+}
+
+/* ===== Modais: formulários ===== */
+
+.modal form {
+
+    text-align: left;
+
+}
+
+.modal input {
+    
+    outline: none;
+    color: #727272;
+  
+}
+
+.form {
+
+    margin-top: 15px;
+    display: grid;
+    gap: 10px;
+
+}
+
+.form textarea {
+
+    font-family: "Poppins", sans-serif;
+    border-radius: 8px;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    resize: vertical; 
+    color: #727272;
+    
+}
+
+.form textarea::-webkit-scrollbar, .prato_info::-webkit-scrollbar {
+    
+    width: 8px;
+
+}
+
+.form textarea::-webkit-scrollbar-thumb, .prato_info::-webkit-scrollbar {
+
+    background-color: #c0c0c0; 
+    border-radius: 4px;
+
+}
+
+.modal_form {
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+
+}
+ 
+.modal_form input {
+
+    font-family: "Poppins", sans-serif;
+    border-radius: 8px;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    padding: 12px;
+    box-sizing: border-box;
+    font-size: 14px;
+
+}
+
+.custom_input {
+
+    width: 425px;
+    padding: 8px 8px 8px 15px;
+    margin-top: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+
+}
+
+label {
+
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 3px;
+
+}
+
+.form_label {
+
+    font-family: "Poppins", sans-serif;
+    border-radius: 8px 0 0 8px;
+    width: 90px;
+    background:#dfdfdfd5;
+    padding: 12px;
+    box-sizing: border-box;
+    font-size: 15px;
+    text-align: center;
+    color:#727272;
+
+}
+
+/* ===== Modais: deleção múltipla ===== */
+
+.multiple_select {
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color:#727272;
+
+}
+
+.button_select {
+
+    display: flex;
+    height: 45px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color:#f2f2f2;
+    
+}
+
+.button_select .arrow_down {
+
+    display: flex;
+    height: 21px;
+    width: 21px;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 50%;
+    background:#0d580a;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+
+}
+
+.button_select.open .arrow_down {
+
+    transform: rotate(-180deg);
+
+}
+
+.list_items {
+    
+    display:flex;
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    display: none;    
+    flex-wrap: wrap; 
+        
+}
+
+.button_select.open ~ .list_items {
+
+    display: flex;
+
+}
+
+.list_items .item {
+    
+    width: 200px;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 42px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding-left: 20px;
+    border-radius: 8px;
+
+}
+
+.item .item_text {
+
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+
+}
+
+.item .checkbox {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 16px;
+    width: 16px;
+    border-radius: 4px;
+    margin-right: 12px;
+    border: 1.5px solid #c0c0c0;
+    transition: all 0.2s ease-in-out;
+
+}
+
+.item.checked .checkbox {
+
+    background-color: #0d580a;
+    border-color: #0d580a;
+
+}
+
+/* ===== Modais: prato expandido ===== */
+
+.circle_frame {
+
+    border-radius: 50%;
+    height: 100%;
+    width: 400px;
+    float: left;
+    margin-right: 20px;
+    object-fit: cover;
+
+}
+
+.circle_frame img {
+
+    height: 400px;
+    width: auto;
+    padding: 0;
+    margin: 0;
+
+}
+
+.panel {
+
+    border-radius: 72px 25px 25px 72px;
+    width: 800px;
+    height: 400px;
+    
+}
+
+.modal_expandir {
+
+    border-radius: 200px 25px 25px 200px;
+    width: 800px;
+    min-height: 400px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+}
+
+.prato_info {
+
+    text-align: left;
+    padding: 30px;
+
+}
+
+.prato_info h1 {
+
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 10px;
+
+}
+
+.icon {
+
+    width:100px; 
+    height:100px;
+    margin: 14%;
+    
+}
+
+.prato_texto {
+
+    font-size: 15px;
+
+}
+
+.modal_expandir button.close_expandir {
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    background-color: #0d580a;
+    color: #ffffff;
+
+}
+
+.prato_info input {
+    
+    font-family: "Poppins", sans-serif;
+    border-radius: 8px;
+    width: 70px;
+    margin: 20px 5px 0;
+    background: #f2f2f2;
+    border: 0;
+    padding: 8px 8px 8px 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+
+}
+
+.prato_buttons {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+/* ===== Informações do usuário ===== */
+
+.user_data {
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+}
+
+.data {
+
+    display:grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.user_data h1 {
+
+    grid-column: span 2;
+    text-align: center;
+    font-weight: 600;
+
+}
+
+.user_data img {
+
+    width: 225px;
+
+}
+
+.userInfo {
+    
+    margin: 0 0 0 25px;
+
+}
+
+.userDetail {
+    
+    margin-bottom: 16px;
+
+}
+
+/* ===== Navegação ===== */
+
+#cliente, #administracao, .lista_pratos {
+
+    display: none;
+    
 }

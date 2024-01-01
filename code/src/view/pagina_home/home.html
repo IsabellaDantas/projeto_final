@@ -29,55 +29,103 @@
               
             </div>
     
-            <div class="menu_container">
+            <div class="options_container">
     
-                <div class="menu_items">
-    
-                    <ul class="menu_item">
-    
-                        <div class="menu_title">
-        
-                            <span class="title">Pedidos</span>
-                            <span class="line"></span>
-            
-                        </div>
-        
+                <div class="options_items">
+
+                    <ul class="options_item">
+
                         <li class="item">
-        
-                            <a href="#" class="link">
             
-                                <i class='bx bx-shopping-bag'></i>
-                                <span>Cestinha</span>
+                            <a href="#" onclick="show_home()" class="link">
+            
+                                <i class='bx bx-home'></i>
+                                <span>Home</span>
                 
                             </a>
         
                         </li>
-        
+
+                    </ul>
+    
+                    <ul class="options_item" id="cliente">
+    
+                            <div class="options_title">
+            
+                                <span class="title">Gerência de Pedidos</span>
+                                <span></span>
+                
+                            </div>
+            
+                            <li class="item">
+                
+                                <a href="#" onclick="historico_compras()" class="link">
+                
+                                    <i class='bx bx-history' ></i>
+                                    <span>Histórico de Pedidos</span>
+                    
+                                </a>
+                
+                            </li>
+    
+                    </ul>
+
+                    <ul class="options_item" id="administracao">
+    
+                        <div class="options_title">
+    
+                            <span class="title">Administração</span>
+                            <span></span>
+    
+                        </div>
+    
                         <li class="item">
-            
-                            <a href="#" class="link">
-            
-                                <i class='bx bx-history' ></i>
-                                <span>Histórico de Pedidos</span>
+    
+                            <a href="#" onclick="show_gerenciar_pratos(), listar_pratos_cadastrados()" class="link">
+    
+                                <i class='bx bx-dish'></i>
+                                <span>Gestão de Pratos</span>
                 
                             </a>
+    
+                        </li>
+
+                        <li class="item">
+    
+                            <a href="#" onclick="editar_menu()" class="link">
             
+                                <i class='bx bx-food-menu'></i>
+                                <span>Editar Cardápio</span>
+            
+                            </a>
+    
+                        </li>
+    
+                        <li class="item">
+    
+                            <a href="#" onclick="credenciamento()" class="link">
+            
+                                <i class='bx bx-certification'></i>
+                                <span>Credenciamento</span>
+            
+                            </a>
+    
                         </li>
     
                     </ul>
+
+                    <ul class="options_item">
     
-                    <ul class="menu_item">
-    
-                        <div class="menu_title">
+                        <div class="options_title">
     
                             <span class="title">Opções do Usuário</span>
-                            <span class="line"></span>
+                            <span></span>
     
                         </div>
     
                         <li class="item">
     
-                            <a href="#" class="link">
+                            <a href="#" onclick="show_user_data()" class="link">
     
                                 <i class='bx bx-id-card'></i>
                                 <span>Dados do Usuário</span>
@@ -107,71 +155,500 @@
 
         <div class="content">
 
-            <div class="header">
+            <div class="home">
 
-                <div class="title">
-    
-                    <h1> Culinária Jardim <img src="images/panela_icone.png"></h1>
-                    <p> A opção perfeita você que deseja uma vida saudável, <br>
-                    de forma prática e sem sair do conforto do seu lar! </p>
-                    
-                </div>
-    
-                <div class="header_image">
-       
-                    <img src="images/prato.png">
-    
-                </div>
-    
-            </div>
+                <div class="header">
 
-            <div class="categorias">
-
+                    <div class="title">
         
-                <button class="botton">Baixas Calorias</button>
-                <button class="botton">Sem Glúten</button>
-                <button class="botton">Sem Lactose</button>
-                <button class="botton">Baixo Índice Glicêmico</button>
-                <button class="botton">Vegetariano</button>
-                <button class="botton">Vegano</button>
-                <button class="botton">Low Carb</button>
-                <button class="botton">Rico em Proteínas</button>
-                <button class="botton">Baixo Sódio</button>
-                
-                <div class="search_box">
-                    
-                    <input type="text" placeholder="Pesquise seu prato...">
-                    
-                    <div class="search_icon">
-                    
-                        <i class='bx bx-search'></i>
-                
+                        <h1> Culinária Jardim <img src="images/panela_icone.png"></h1>
+                        <p> A opção perfeita você que deseja uma vida saudável, <br>
+                        de forma prática e sem sair do conforto do seu lar! </p>
+                        
                     </div>
-                    
-                </div>
         
-            </div>
+                    <div class="header_image">
+        
+                        <img src="images/prato.png">
+        
+                    </div>
+        
+                </div>
+
+                <div class="categorias">
+
             
-            <div class="menu">
-
-                <div class="card">
-    
-                    <img src="images/prato.png" alt="Prato do Restaurante" class="card_image">
+                    <button class="button" value="Baixas Calorias" onclick="pesquisar_categoria(value)">Baixas Calorias</button>
+                    <button class="button" value="Sem Glúten" onclick="pesquisar_categoria(value)">Sem Glúten</button>
+                    <button class="button" value="Sem Lactose" onclick="pesquisar_categoria(value)">Sem Lactose</button>
+                    <button class="button" value="Baixo Teor Glicêmico" onclick="pesquisar_categoria(value)">Baixo Índice Glicêmico</button>
+                    <button class="button" value="Vegetariano" onclick="pesquisar_categoria(value)">Vegetariano</button>
+                    <button class="button" value="Vegano" onclick="pesquisar_categoria(value)">Vegano</button>
+                    <button class="button" value="Low Carb" onclick="pesquisar_categoria(value)">Low Carb</button>
+                    <button class="button" value="Rico em Proteínas" onclick="pesquisar_categoria(value)">Rico em Proteínas</button>
+                    <button class="button" value="Baixo Sódio" onclick="pesquisar_categoria(value)">Baixo Sódio</button>
                     
-                    <div class="content_card">
-                      
-                        <h2>Título do Prato</h2>
-                        <p class="price">Preço: R$ 19,99</p>
-                        <button class="botton">Detalhar</button>
+                    <div class="search_box">
+                        
+                        <input type="text" placeholder="Pesquise seu prato..." oninput="buscar_nome()" id="search">
+                        
+                        <div class="search_icon">
+                        
+                            <i class='bx bx-search'></i>
+                    
+                        </div>
+                        
+                    </div>
+            
+                </div>
+                
+                <div class="menu_home" id="menu">
+
+                    <div class="card">
+        
+                        <img src="images/prato.png" alt="Prato do Restaurante" class="card_image">
+                        
+                        <div class="content_card">
+                        
+                            <h2>Título do Prato</h2>
+                            <p class="price">Preço: R$ 19,99</p>
+                            <button class="button" onclick="expandir_prato()">Detalhar</button>
+                        
+                        </div>
                     
                     </div>
-                
+        
                 </div>
-    
+            
+            </div>
+
+            <div class="lista_pratos">
+
+                <button class="button button_fixed" onclick="cadastrar_prato()">Cadastrar prato</button>
+
+                <table class="styled_table">
+                    
+                    <thead>
+                        
+                        <tr>
+                            
+                            <th>Título do Prato</th>
+                            <th>Preço</th>
+                            <th>Detalhar</th>
+                            <th>Editar</th>
+                            <th>Excluir</th>
+                        
+                        </tr>
+                    
+                    </thead>
+                    
+                    <tbody id="pratos_cadastrados">
+                    
+                        <tr class="active_row">
+                            
+                            <td>Frango ao molho curry</td>
+                            <td>29,50</td>
+                            <td><i class='bx bx-expand-alt' onclick="expandir_prato(id)"></i></td>
+                            <td><i class='bx bx-edit-alt' onclick="editar_prato(id)"></i></td>
+                            <td><i class='bx bx-trash' onclick="excluir_prato(id)"></i></td>
+                        
+                        </tr>
+                        
+                    </tbody>
+                
+                </table>
+
+            </div>
+
+            <div class="user_data" id="user_data">
+
+                <div class="data">
+
+                    <h1>Dados do Usuário</h1>
+
+                    <div class="user_image">
+
+                        <img src="images/user_image.png">
+
+                    </div>
+
+                    <div class="userInfo" id="user_info">
+                    
+                    </div>
+                    
+                </div>
+
             </div>
 
         </div>
+
+        <!-- Modal Excluir -->
         
+        <div class="modal_container" id="modal_excluir">
+
+            <div class="modal">
+
+                <h1>Você tem certeza disso?</h1>
+                <p>Não será possível recuperar os dados após a exclusão.</p>
+                <button id="excluir_close">Cancelar</button>
+                <button id="excluir_confirm" class="red">Excluir</button>
+            
+            </div>
+        
+        </div>
+
+        <!-- Modal credenciar -->
+        
+        <div class="modal_container" id="modal_credenciar">
+
+            <div class="modal">
+
+                <h1>Credenciamento</h1>
+                <p id="conteudo">Em primeiro lugar, você deseja <a id="credenciar" class="green" style="cursor: pointer"> credenciar</a> ou <a id="descredenciar" class="red" style="cursor: pointer">descredenciar</a> um determinado usuário?</p>
+                <p id="credenciar_email" style="display:none"> Digite o e-mail do usuário que deseja credenciar: </p>
+                <p id="descredenciar_email" style="display:none"> Digite o e-mail do usuário que deseja descredenciar: </p>
+                <input type="email" id="email" name="email" style="display:none" class="custom_input" placeholder="Digite seu e-mail" required>
+
+                <button id="credenciar_close">Cancelar</button>
+                <button id="credenciar_confirm" class="green" style="display: none">Credenciar</button>
+                <button id="descredenciar_confirm" class="red" style="display: none">Descredenciar</button>
+                
+            </div>
+        
+        </div>
+
+        <!-- Modal Cadastrar e/ou Editar Prato -->
+        
+        <div class="modal_container" id="modal_cadastrar_editar">
+
+            <div class="modal modal_cadastrar_editar">
+
+                <h1>Título</h1>
+
+                <div class="form">
+                    
+                    <form class="modal_form">
+
+                        <label style="grid-column: span 3;"> TÍTULO DO PRATO </label> 
+                        <label style="grid-column: span 3;"> PREÇO </label>
+                        
+                        <input type="text" placeholder="nome" id="input_nome" style="grid-column: span 3;"/>
+                        <input type="number" placeholder="preço (R$)" id="input_preco" step="0.01" style="grid-column: span 3;"/>
+                        
+                        <label style="grid-column: span 6;"> DESCRIÇÃO </label>
+                        <textarea id="input_descricao" placeholder="Digite a descrição do prato..." style="grid-column: span 6;"></textarea>
+                        
+                        <label style="grid-column: span 6;"> CATEGORIAS </label>
+                        
+                        <div class="multiple_select" style="grid-column: span 6;">
+                            
+                            <div class="button_select">
+                                
+                                <span class="button_text">Selecione as categorias</span>
+                                
+                                <span>
+                                    
+                                    <i class='bx bx-chevron-down arrow_down'></i>
+                                
+                                </span>
+                            
+                            </div>
+                            
+                            <ul class="list_items">
+                                
+                                <li class="item">
+                                    
+                                    <span class="checkbox">
+                                        
+                                        <i class="fa-solid fa-check check-icon"></i>
+                                    
+                                    </span>
+                                    
+                                    <span class="item_text">Baixas Calorias</span>
+                                
+                                </li>
+
+                                <li class="item">
+                                    
+                                    <span class="checkbox">
+                                        
+                                        <i class="fa-solid fa-check check-icon"></i>
+                                    
+                                    </span>
+                                    
+                                    <span class="item_text">Sem Glúten</span>
+                                
+                                </li>
+
+                                <li class="item">
+                                    
+                                    <span class="checkbox">
+                                        
+                                        <i class="fa-solid fa-check check-icon"></i>
+                                    
+                                    </span>
+                                    
+                                    <span class="item_text">Baixo Teor Glicêmico</span>
+                                
+                                </li>
+
+                                <li class="item">
+                                    
+                                    <span class="checkbox">
+                                        
+                                        <i class="fa-solid fa-check check-icon"></i>
+                                    
+                                    </span>
+                                    
+                                    <span class="item_text">Sem Lactose</span>
+                                
+                                </li>
+
+                                <li class="item">
+                                    
+                                    <span class="checkbox">
+                                        
+                                        <i class="fa-solid fa-check check-icon"></i>
+                                    
+                                    </span>
+                                    
+                                    <span class="item_text">Vegetariano</span>
+                                
+                                </li>
+
+                                <li class="item">
+                                    
+                                    <span class="checkbox">
+                                        
+                                        <i class="fa-solid fa-check check-icon"></i>
+                                    
+                                    </span>
+                                    
+                                    <span class="item_text">Rico em Proteínas</span>
+                                
+                                </li>
+
+                                <li class="item">
+                                    
+                                    <span class="checkbox">
+                                        
+                                        <i class="fa-solid fa-check check-icon"></i>
+                                    
+                                    </span>
+                                    
+                                    <span class="item_text">Vegano</span>
+                                
+                                </li>
+                                
+                                <li class="item">
+                                    
+                                    <span class="checkbox">
+                                        
+                                        <i class="fa-solid fa-check check-icon"></i>
+                                    
+                                    </span>
+                                    
+                                    <span class="item_text">Low Carb</span>
+                                
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <label style="grid-column: span 6;"> IMAGEM </label>
+
+                        <div style="grid-column: span 6; display: flex;">
+                            
+                            <span class="form_label">http://</span>
+                            <input type="url" placeholder="URL da imagem" id="input_img" step="0.01" style="border-radius: 0 8px 8px 0;"/>
+                        
+                        </div> 
+
+                    </form>
+
+                </div>
+
+                <button id="cadastrar_editar_close">Cancelar</button>
+                <button id="cadastrar_editar_confirm" class="green">Cadastrar</button>
+            
+            </div>
+
+        </div>
+
+        <!-- Modal Histórico de Compras -->
+        
+        <div class="modal_container" id="modal_historico">
+
+            <div class="modal">
+
+                <h1>Histórico de Compras</h1>
+                
+                <table class="styled_table" style="width: 450px; box-shadow: none; margin-bottom: 0; text-align: left;">
+                    
+                    <thead>
+                        
+                        <tr>
+                            
+                            <th>Prato</th>
+                            <th>Quantidade</th>
+                            <th>Preço Total</th>
+                            <th>Data</th>
+                        
+                        </tr>
+                    
+                    </thead>
+                    
+                    <tbody id="historico">
+                    
+                        <tr class="active_row">
+                            
+                            <td>Frango ao molho Curry</td>
+                            <td>1</td>
+                            <td>29,50R$</td>
+                            <td>31/12/2023</td>
+                        
+                        </tr>
+                        
+                    </tbody>
+                
+                </table>
+
+                <button id="historico_close">Cancelar</button>
+            
+            </div>
+        
+        </div>
+
+        <!-- Modal escolher menu -->
+
+        <div class="modal_container" id="modal_menu">
+
+            <div class="modal" style="width:500px;">
+
+                <h1>Edição de Cardápio</h1>
+                <p style="margin-bottom: -50px;">Selecione os pratos a serem apresentados no cardápio:</p>
+
+                <div class="form">
+                    
+                    <form class="modal_form menu_home" style="width: 500px; margin-bottom: -40px;">
+                            
+                        <ul class="list_items" id="menu" style="display:grid; grid-template-columns: repeat(3, 1fr)">
+                            
+                            <li class="item" style="grid-column: span 1; width: 160px; margin-bottom: 5px">
+                                
+                                <span class="checkbox">
+
+                                    <i class="fa-solid fa-check check-icon"></i>
+
+                                </span>
+                                
+                                <span class="item_text">Baixas Calorias</span>
+                            
+                            </li>
+
+                        </ul>
+                
+                    </form>
+
+                </div>
+
+                <button id="menu_close">Cancelar</button>
+                <button id="menu_confirm" class="green">Confirmar</button>
+
+            </div>
+
+        </div>
+
+        <!-- Modal Editar Usuário -->
+        
+        <div class="modal_container" id="modal_editar_user">
+
+            <div class="modal">
+
+                <h1>Editar dados do usuário</h1>
+
+                <div class="form">
+                    
+                    <form class="modal_form">
+
+                        <label style="grid-column: span 6;"> TELEFONE </label> 
+                        <input type="text" placeholder="Insira o novo telefone..." id="new_telefone" style="grid-column: span 6;"/>
+
+                        <label style="grid-column: span 6;"> ENDEREÇO </label>
+                        <textarea id="new_endereco" placeholder="Insira o novo endereço..." style="grid-column: span 6;"></textarea>
+                    
+                    </form>
+                
+                </div>
+
+                <button id="user_editar_close">Cancelar</button>
+                <button id="user_editar_confirm" class="green">Cadastrar</button>
+
+            </div>
+        
+        </div>   
+        
+        <!-- Modal Expandir Prato -->
+        
+        <div class="modal_container" id="modal_expandir">
+
+            <div class="modal modal_expandir">
+
+                <div class="panel" id="prato_info">
+                    
+                    <div class="circle_frame"><img class="icon" src="images/prato.png"></div>
+
+                    <button class="close_expandir" id="close_expandir"><i class='bx bx-x'></i></button>
+                    
+                    <div class="prato_info">
+
+                        <h1>Frango ao Curry</h1>
+                        
+                        <div class="prato_texto">
+
+                            <p>Uma deliciosa combinação de pedaços suculentos de frango 
+                            cozidos lentamente em um molho rico de curry, leite de coco e 
+                            especiarias aromáticas. Esta receita traz uma explosão de sabores, 
+                            equilibrando o calor do curry com a doçura do coco, resultando 
+                            em uma experiência gastronômica única. </p>
+                            <br>
+                            <strong>Categorias: </strong> Principal, Asiático, Sem Glúten <br>
+                            <strong>Preço Unitário: </strong> R$ 29,90 <br>
+
+                        </div>
+
+                        <div class="prato_buttons">
+                        
+                            <input type="number" placeholder="qtdd." id="input_qtdd" step="1"/>
+                            <button id="expandir_confirm" class="green">Comprar</button>
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        
+        </div>  
+        
+        <!-- Modal Compra Realizada -->
+        
+        <div class="modal_container" id="modal_compra">
+
+            <div class="modal">
+
+                <h1>Seu pedido foi efetuado!</h1>
+                <p>Fique atento ao seu telefone. Entraremos em contato para discutir os devidos detalhes de pagamento.</p>
+                <button id="ok" class="green">OK</button>
+                
+            </div>
+        
+        </div>
+
+        <script src="home_script.js"></script>
+
     </body>
 
 </html>
