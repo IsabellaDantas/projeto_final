@@ -699,12 +699,16 @@ async function editar_menu() {
         const pratos_menu = get_menu();
 
         try {
-            
-            // Aqui eu preciso da rota onde eu mando uma lista de ids e isso é colocado na tabela menu (que tem que seu limpa antes)
-            const response = await fetch(ji, {
-            method: "PUT",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dado)});
+
+            pratos_menu.forEach(prato => {
+                
+                // Aqui eu preciso da rota onde eu mando uma lista de ids e isso é colocado na tabela menu (que tem que seu limpa antes)
+                const response = await fetch(ji, {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dado)});
+
+            }
 
         } catch (error) {
     
