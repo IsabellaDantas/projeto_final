@@ -10,7 +10,7 @@ loginBtn.addEventListener('click', () => {
     container.classList.remove("active");
 });
 
-/*
+
 async function cadastrar() {
     const nome = document.getElementById("nome").value;
     const email = document.getElementById("email").value;
@@ -43,7 +43,7 @@ async function cadastrar() {
     }
 
 }
-*/
+
 /*
 async function login() {
     const email_login = document.getElementById("email_login").value;
