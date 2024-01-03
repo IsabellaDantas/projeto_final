@@ -14,12 +14,14 @@
         <div class="form-container sign-up">
             <form>
                 <h1>Criar conta</h1>
-                <input type="text" placeholder="Nome">
-                <input type="email" placeholder="Email">
-                <input type="text" placeholder="telefone">
-                <input type="text" placeholder="endereco">
-                <input type="text" placeholder="Senha">
-                <button>Cadastrar</button>
+                <input type="text" placeholder="Nome" id="nome" required>
+                <input type="email" placeholder="Email" id="email" required>
+                <input type="text" placeholder="Telefone" id="telefone" required>
+                <input type="text" placeholder="Bairro" id="bairro" required>
+                <input type="text" placeholder="Rua" id="rua" required>
+                <input type="text" placeholder="Numero da casa" id="n_casa" required>
+                <input type="text" placeholder="Senha" id="senha" required>
+                <button onclick="cadastrar()">Cadastrar</button>
             </form>
         </div>
         <div class="form-container entrar">
