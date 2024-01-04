@@ -43,7 +43,12 @@ class PratosModel {
   async getPratoByNome(nome) {
     try {
 
-      const query = `SELECT * FROM pratos WHERE nome ILIKE '%$1%' RETURNING *;`;
+      const query = `
+        SELECT *
+        FROM Pratos
+        WHERE nome LIKE $1
+        AND id IN (SELECT cardapio_dia FROM Menu);
+        `;
       const values = [`%${nome}%`];
 
       const result = await db.query(query, values);
@@ -58,7 +63,12 @@ class PratosModel {
 
   async getPratoByCategoria(categoria) {
     try {
-      const query = `SELECT * FROM pratos WHERE categoria ILIKE '%$1%' RETURNING *;`;
+      const query = `
+        SELECT *
+        FROM Pratos
+        WHERE categoria LIKE $1
+        AND id IN (SELECT cardapio_dia FROM Menu);
+      `;
       const values = [`%${categoria}%`];
 
       const result = await db.query(query, values);
@@ -104,43 +114,6 @@ class PratosModel {
     }
   }
 
-  //---------------------TESTE------------------------
-  async getProdutos() {
-    const query = 'SELECT * FROM produtos';
-    try {
-      const result = await db.query(query);
-      return result.rows;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async getProdutosByName(nome) {
-    try {
-      const query = 'SELECT * FROM produtos WHERE nome LIKE $1';
-      const values = [`%${nome}%`];
-  
-      const result = await db.query(query, values);
-      const produtos = result.rows;
-  
-      return produtos;
-    } catch (error) {
-      console.error(error);
-      throw new Error('Erro ao buscar produtos por nome');
-    }
-  }
-  
-    async createProduto(nome, valor, categoria, quantidade) {
-      const query = 'INSERT INTO produtos (nome, valor, categoria, quantidade) VALUES ($1, $2, $3, $4) RETURNING *';
-      const values = [nome, valor, categoria, quantidade];
-  
-      try {
-        const result = await db.query(query, values);
-        return result.rows[0];
-      } catch (error) {
-        throw error;
-      }
-    }
 }
 
 

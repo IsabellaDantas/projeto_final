@@ -23,6 +23,16 @@ class MenuController{
         }
     }
 
+    async getPratosMenu(req, res) {
+        try{
+            const pratos_dia = await menuModel.getPratosMenu();
+            res.json(pratos_dia);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({error: error.message});
+        }
+    }
+
     
 }
 

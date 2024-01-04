@@ -24,6 +24,23 @@ class MenuModel {
             throw error;
         }
   }
+
+  async getPratosMenu(){
+        const query = `
+            SELECT *
+            FROM Menu
+            JOIN Pratos ON Menu.cardapio_dia = Pratos.id;
+        `;
+
+        try{
+            const result = await db.query(query);
+            return result.rows;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+  }
+  
 }
 
 

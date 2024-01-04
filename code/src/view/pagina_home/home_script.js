@@ -12,7 +12,7 @@ if (token) {
             nome: decodedToken.nome,
             autenticado: true, 
             email: decodedToken.email,
-            telefone: decodedToken.telefone,
+            telefone: decodedToken.telefone, //divisão de endereco: endereco é dividido em bairro, rua e _casa...
             bairro: decodedToken.bairro,
             rua: decodedToken.rua,
             n_casa: decodedToken.n_casa
@@ -33,7 +33,7 @@ async function get_pratos() {
     try {
 
         //Aqui eu preciso chamar a rota que pega os dados de todos os pratos que possuem id na tabela cardapio
-        const response = await fetch('http://localhost:3000/menu');
+        const response = await fetch('http://localhost:3000/menu/pratos');
 
         if (response.ok) {
     
@@ -129,7 +129,7 @@ async function pesquisar_nome() {
         else {
             
             //preciso de uma rota em que mando o value de nome e me retorna a lista de pratos que possuem seu id no cardápio e tem a tal nome (ILIKE)
-            const response = await fetch(`http://localhost:3000/pratos/nome/?nome=${nome}`+ nome.value);
+            const response = await fetch(`http://localhost:3000/pratos/nome/?nome=${nome}`);
             const pratos = await response.json();
             exibir_pratos(pratos);
         
@@ -212,10 +212,10 @@ async function cadastrar_prato() {
         const dados_prato = {
             
             nome: input_nome.value,
-            preco: input_preco.value,
             descricao: input_descricao.value,
+            preco: input_preco.value,
             imagem: input_imagem.value,
-            categoria: input_categoria,
+            categoria: input_categoria, //ñ tem quantidade?
         
         }
 
@@ -240,11 +240,11 @@ async function cadastrar_prato() {
 
         }
 
-        input_categoria = "";
         input_nome.value = "";
-        input_preco.value = "";
         input_descricao.value = "";
+        input_preco.value = "";
         input_imagem.value = "";
+        input_categoria = ""; //quantidade?...
 
         modal_container.classList.remove('show');
         uncheck();
@@ -257,9 +257,9 @@ async function cadastrar_prato() {
 async function editar_prato(id) {
 
     const edit_nome = document.querySelector("#input_nome");
-    const edit_preco = document.querySelector("#input_preco");
     const edit_descricao = document.querySelector("#input_descricao");
-    const edit_imagem = document.querySelector("#input_imagem");
+    const edit_preco = document.querySelector("#input_preco");
+    const edit_imagem = document.querySelector("#input_imagem"); //quantidade...
     
     try {
 
@@ -268,9 +268,10 @@ async function editar_prato(id) {
         const data = await response.json();
 
         edit_nome.value = data.nome;
-        edit_preco.value = data.preco;
         edit_descricao.value = data.descricao;
+        edit_preco.value = data.preco;
         edit_imagem.value = data.imagem_link;
+        //quantidade?...
 
     } catch (error) {
 
@@ -293,9 +294,9 @@ async function editar_prato(id) {
         uncheck();
         
         edit_nome.value = "";
-        edit_preco.value = "";
         edit_descricao.value = "";
-        edit_imagem.value = "";
+        edit_preco.value = "";
+        edit_imagem.value = ""; //quantidade?
 
     });
     
@@ -305,11 +306,11 @@ async function editar_prato(id) {
 
         const dado = {
             
-            categoria: edit_categoria,
             nome: edit_nome.value,
-            preco: edit_preco.value,
             descricao: edit_descricao.value,
-            imagem: edit_imagem.value
+            preco: edit_preco.value, //quantidade
+            imagem: edit_imagem.value,
+            categoria: edit_categoria
 
         };
 
@@ -547,9 +548,9 @@ async function credenciamento() {
 
                 // Aqui eu preciso de uma rota para a qual eu envie o e-mail do usuário e tire o True do credenciado
                 await fetch(`http://localhost:3000/cadastro/descredenciar/${id}`, { 
-                    method: "DELETE",
+                    method: "PUT",
                     headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dado)});
+                body: JSON.stringify(email)});
     
             } catch (error) {
     
@@ -726,7 +727,7 @@ async function editar_menu() {
                 
                 // Aqui eu preciso da rota onde eu mando uma lista de ids e isso é colocado na tabela menu (que tem que seu limpa antes)
                 const response = await fetch(`http://localhost:3000/menu`, {
-                method: "PUT",
+                method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(cardapio_dia)});
 
@@ -762,7 +763,7 @@ async function editar_user() {
         modal_container.classList.remove('show');
         
         edit_telefone.value = "";
-        edit_endereco.value = "";
+        edit_endereco.value = ""; //divisão de endereco
 
     });
     
@@ -770,13 +771,13 @@ async function editar_user() {
 
         //Aqui estou assumindo que os dados do usuário foram mandados pra mim da página de login
         user.telefone = edit_telefone;
-        user.endereco = edit_endereco;
+        user.endereco = edit_endereco; //divisão de endereco
 
         const dado = {
             
             id: user.id,
             telefone: edit_telefone,
-            endereco: edit_endereco
+            endereco: edit_endereco  //divisao de endereco
 
 
         };
@@ -828,8 +829,8 @@ async function comprar(id_prato, preco_prato) {
         id_cliente: user.id,
         id_prato: id_prato,
         qtdd: qtdd,
-        preco_total: preco_prato * qtdd,
-        data: data_atual
+        data: data_atual,
+        preco_total: preco_prato * qtdd
 
     };
 
