@@ -33,7 +33,7 @@ async function get_pratos() {
     try {
 
         //Aqui eu preciso chamar a rota que pega os dados de todos os pratos que possuem id na tabela cardapio
-        const response = await fetch();
+        const response = await fetch('http://localhost:3000/menu');
 
         if (response.ok) {
     
@@ -103,7 +103,7 @@ async function pesquisar_categoria(categoria) {
     try {
         
         //preciso de uma rota em que mando a categoria e me retorna a lista de pratos que possuem seu id no cardápio e tem a tal categoria (ILIKE)
-        const response = await fetch();
+        const response = await fetch(`http://localhost:3000/pratos/categoria/?categoria=${categoria}`);
         const pratos = await response.json();
         exibir_pratos(pratos);
     
@@ -129,7 +129,7 @@ async function pesquisar_nome() {
         else {
             
             //preciso de uma rota em que mando o value de nome e me retorna a lista de pratos que possuem seu id no cardápio e tem a tal nome (ILIKE)
-            const response = await fetch( + nome.value);
+            const response = await fetch(`http://localhost:3000/pratos/nome/?nome=${nome}`+ nome.value);
             const pratos = await response.json();
             exibir_pratos(pratos);
         
@@ -163,7 +163,7 @@ async function excluir_prato(id) {
         try {
 
             // Aqui eu preciso de uma rota para a qual eu envie o id do prato, pra excluir ele
-            await fetch( + id, { method: "DELETE" });
+            await fetch(`http://localhost:3000/pratos/${id}`, { method: "DELETE" });
             modal_container.classList.remove('show');
             listar_pratos_cadastrados()
 
@@ -211,19 +211,19 @@ async function cadastrar_prato() {
         
         const dados_prato = {
             
-            categoria: input_categoria,
             nome: input_nome.value,
             preco: input_preco.value,
             descricao: input_descricao.value,
-            imagem: input_imagem.value
+            imagem: input_imagem.value,
+            categoria: input_categoria,
         
         }
 
         try {
             
             // Aqui preciso da rota de cadastrar pratos, botei "ur" pq se não dá problema pra exibir o site
-            //pergunta: o id no banco está configurando para ir incrementando? É preciso
-            await fetch( ur, {
+            //pergunta: o id no banco está configurando para ir incrementando? É preciso  R: Sim
+            await fetch( `http://localhost:3000/pratos`, {
         
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
@@ -264,7 +264,7 @@ async function editar_prato(id) {
     try {
 
         // Aqui eu preciso da rota de pesquisar por id
-        const response = await fetch();
+        const response = await fetch(`http://localhost:3000/pratos/${id}`);
         const data = await response.json();
 
         edit_nome.value = data.nome;
@@ -316,7 +316,7 @@ async function editar_prato(id) {
         try {
             
             // Aqui eu preciso da rota de editar por id
-            const response = await fetch(ji, {
+            const response = await fetch(`http://localhost:3000/${id}`, {
             method: "PUT",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dado)});
@@ -347,7 +347,7 @@ async function expandir_prato(id) {
     try {
          
         //Aqui preciso de uma rota pra pesquisar por id, pra expandir o prato
-        const response = await fetch();
+        const response = await fetch(`http://localhost:3000/pratos/${id}`);
         const prato = await response.json();
         
         card.innerHTML = `
@@ -414,7 +414,7 @@ async function listar_pratos_cadastrados() {
 
         const tbody = document.querySelector("#pratos_cadastrados");
         //Aqui eu preciso de uma rota que retorne todos os pratos cadastrados (de preferencia em ordem alfabética)
-        const response = await fetch();
+        const response = await fetch(`http://localhost:3000/pratos`);
 
         if (response.ok) {
     
@@ -509,8 +509,11 @@ async function credenciamento() {
             try {
 
                 // Aqui eu preciso de uma rota para a qual eu envie o e-mail do usuário e coloque o True no credenciado
-                await fetch( + campo_email.value, { method: "DELETE" })
-    
+                await fetch(`http://localhost:3000/cadastro/credenciar/${id}`, { 
+                    method: "PUT",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(email)});
+
             } catch (error) {
     
                 alert("Ocorreu um erro");
@@ -543,7 +546,10 @@ async function credenciamento() {
             try {
 
                 // Aqui eu preciso de uma rota para a qual eu envie o e-mail do usuário e tire o True do credenciado
-                await fetch( + campo_email.value, { method: "DELETE" })
+                await fetch(`http://localhost:3000/cadastro/descredenciar/${id}`, { 
+                    method: "DELETE",
+                    headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dado)});
     
             } catch (error) {
     
@@ -584,7 +590,7 @@ async function historico_compras() {
 
         const tbody = document.querySelector("#historico");
         //Aqui eu mando o id da pessoa e recebo o nome do prato, qtdd e preço pago de todas as compras com o id do usuário logado
-        const response = await fetch();
+        const response = await fetch(`http://localhost:3000/compras/${id_cliente}`);
 
         if (response.ok) {
     
@@ -646,7 +652,7 @@ async function editar_menu() {
 
         const tbody = document.querySelector("#menu");
         //Aqui eu preciso de uma rota que retorne todos os pratos cadastrados (de preferencia em ordem alfabética)
-        const response = await fetch();
+        const response = await fetch(`http://localhost:3000/pratos`);
 
         if (response.ok) {
     
@@ -719,10 +725,10 @@ async function editar_menu() {
             pratos_menu.forEach(async prato => {
                 
                 // Aqui eu preciso da rota onde eu mando uma lista de ids e isso é colocado na tabela menu (que tem que seu limpa antes)
-                const response = await fetch(ji, {
+                const response = await fetch(`http://localhost:3000/menu`, {
                 method: "PUT",
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dado)});
+                body: JSON.stringify(cardapio_dia)});
 
             });
 
@@ -772,12 +778,13 @@ async function editar_user() {
             telefone: edit_telefone,
             endereco: edit_endereco
 
+
         };
 
         try {
             
             // Aqui eu preciso da rota de editar o usuário. Vou mandar o id, o telefone e o endereco
-            const response = await fetch(ji, {
+            const response = await fetch(`http://localhost:3000/cadastro/endereco/${id}`, {
             method: "PUT",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dado)});
@@ -829,8 +836,8 @@ async function comprar(id_prato, preco_prato) {
     try {
         
         // Aqui eu preciso da rota pra adicionar uma compra lá na tabela
-        const response = await fetch(ji, {
-        method: "PUT",
+        const response = await fetch(`http://localhost:3000/compras`, {
+        method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dado)});
 
