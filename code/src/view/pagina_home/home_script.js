@@ -1,13 +1,29 @@
 // Objetos usadas pra teste enquanto não há rotas
 
-const user = {
+const token = localStorage.getItem('token');
 
-    "nome" : "yasmim",
-    "autenticado": true,
-    "email": "escolar@ifrn",
-    "telefone": "4002-8922",
-    "endereco": "Rua da amargura"
+if (token) {
+    try {
+        // Decodifica o token
+        const decodedToken = jwt.decode(token);
 
+        // Atualiza o objeto user com os dados do token
+        const user = {
+            nome: decodedToken.nome,
+            autenticado: true, 
+            email: decodedToken.email,
+            telefone: decodedToken.telefone,
+            bairro: decodedToken.bairro,
+            rua: decodedToken.rua,
+            n_casa: decodedToken.n_casa
+        };
+
+        console.log('Dados do usuário:', user);
+    } catch (error) {
+        console.error('Erro ao decodificar o token:', error);
+    }
+} else {
+    console.log('Token não encontrado no localStorage');
 }
 
 // Funções
@@ -700,7 +716,7 @@ async function editar_menu() {
 
         try {
 
-            pratos_menu.forEach(prato => {
+            pratos_menu.forEach(async prato => {
                 
                 // Aqui eu preciso da rota onde eu mando uma lista de ids e isso é colocado na tabela menu (que tem que seu limpa antes)
                 const response = await fetch(ji, {
@@ -708,7 +724,7 @@ async function editar_menu() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(dado)});
 
-            }
+            });
 
         } catch (error) {
     

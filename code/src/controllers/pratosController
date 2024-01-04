@@ -1,0 +1,132 @@
+const pratosModel = require('../models/pratosModel');
+
+
+class PratosController {
+
+  async createPrato(req, res) {
+    const { nome, descricao, preco, quantidade, imagem, categoria } = req.body;
+
+    try {
+      const prato = await pratosModel.createPrato(nome, descricao, preco, quantidade, imagem, categoria);
+      res.status(201).json(prato);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  async getPratos(req, res) {
+    try {
+      const pratos = await pratosModel.getPratos();
+      res.json(pratos);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  async getPratoById(req, res) {
+    const { id } = req.params;
+    
+
+    try {
+      const prato = await pratosModel.getPratoById(id);
+      res.json(prato);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Erro interno do servidor' });
+  }
+  }
+
+  async getPratoByNome(req, res) {
+    const {nome} = req.query;
+
+    try {
+      const pratos = await pratosModel.getPratoByNome(nome);
+      console.log('Pratos encontrados:', pratos);
+
+      res.json(pratos);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  async getPratoByCategoria(req, res) {
+    const {categoria} = req.params;
+
+    try{
+      const pratos = await pratosModel.getPratoByCategoria(categoria);
+      return res.json(pratos); 
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({error: error.message});
+    }
+  }
+
+
+  async updatePrato(req, res) {
+    const { id } = req.params;
+    const { nome, descricao, preco, quantidade, imagem, categoria } = req.body;
+
+
+    try {
+      const prato = await pratosModel.updatePrato(id, nome, descricao, preco, quantidade, imagem, categoria);
+      res.json(prato);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+
+  async deletePrato(req, res) {
+    const { id } = req.params;
+
+    try {
+      const prato = await pratosModel.deletePrato(id);
+      res.json(prato);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  //-------------------TESTEEEE---------------------
+  async getProdutos(req, res) {
+    try {
+      const produtos = await pratosModel.getProdutos();
+      res.json(produtos);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  async getProdutosByName(req, res) {
+    const nome = req.query.nome;
+    try {
+      const produtos = await pratosModel.getProdutosByName(nome);
+      return res.json(produtos);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  async createProduto(req, res) {
+    const { nome, valor, categoria, quantidade } = req.body;
+
+    try {
+      const produto = await pratosModel.createProduto(nome, valor, categoria, quantidade);
+      res.status(201).json(produto);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+}
+
+
+module.exports = new PratosController();

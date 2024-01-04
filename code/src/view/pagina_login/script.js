@@ -61,10 +61,11 @@ async function login() {
             })
         });
         
-        if(responde.ok) {
+        if(response.ok) {
             const { token } = await response.json();
 
-            alert('Token: ' + token);
+            localStorage.setItem('token', token);
+            
             window.location.href = 'home.html';
         } else {
             const { error } = await response.json();
@@ -72,6 +73,6 @@ async function login() {
         }  
     } catch (error) {
         console.error(error);
-        alert('Ocorreu um erro';)
+        alert('Ocorreu um erro');
     }
 }
